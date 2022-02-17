@@ -1,0 +1,65 @@
+<div class="home-container">
+  <div class="header">
+    <img src="assets/images/headerhorses.png"/>
+  </div>
+
+  <div class="filters-container py-4" style="background-color: #EBEBEB">
+    <div>
+      <h2 class="mb-2">Filtrar animais</h2>
+    </div>
+    <div class="filters">
+      <div>
+        <select (change)="handleSelectChanges('cidade', $event.target)" class="form-select" aria-label="Default select example">
+          <option selected [value]="undefined">Todas as cidades</option>
+          <option *ngFor="let cidade of cidades" [value]="cidade.id">
+            {{cidade.nome}}
+          </option>
+        </select>
+      </div>
+      <div>
+        <select (change)="handleSelectChanges('genero', $event.target)" class="form-select" aria-label="Default select example">
+          <option selected [value]="undefined">Todos os generos</option>
+          <option *ngFor="let genero of generos" [value]="genero.id">
+            {{genero.tipo | titlecase //noinspection UnresolvedFunction }}
+          </option>
+        </select>
+      </div>
+      <div>
+        <select (change)="handleSelectChanges('raca', $event.target)" class="form-select" aria-label="Default select example">
+          <option selected [value]="undefined">Todos as raças</option>
+          <option *ngFor="let raca of racas" [value]="raca.id">
+            {{raca.nome | titlecase //noinspection UnresolvedFunction }}
+          </option>
+        </select>
+      </div>
+      <div>
+        <select (change)="handleSelectChanges('pelagem', $event.target)" class="form-select" aria-label="Default select example">
+          <option selected [value]="undefined">Todos as pelagens</option>
+          <option *ngFor="let pelagem of pelagens" [value]="pelagem.id">
+            {{pelagem.nome | titlecase //noinspection UnresolvedFunction }}
+          </option>
+        </select>
+      </div>
+      <div>
+        <button class="btn btn-primary" (click)="handleFiltrarCavalos()">Filtrar cavalos</button>
+      </div>
+    </div>
+  </div>
+
+  <div style="background-color: #FFF" class="cavalos-container p-3">
+    <h2>Cavalos</h2>
+    <div class="cavalos-content">
+      <div *ngFor="let cavalo of cavalos">
+        <div class="cavalo-item">
+          <app-horse-card
+            [id]=cavalo.id
+            [name]=cavalo.nome
+            [price]="cavalo.preco"
+            [city]="cavalo.cidade?.nome + ' - ' + cavalo.cidade?.estado?.sigla"
+            picture="assets/images/cavalo.png"
+          ></app-horse-card>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

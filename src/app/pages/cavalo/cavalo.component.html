@@ -1,0 +1,51 @@
+<div class="cavalo-container mt-4">
+  <div class="left-content py-2 px-3 d-flex flex-column gap-3">
+    <div class="row">
+      <div class="col-2">
+        #{{cavalo.id}}
+      </div>
+      <div class="col-6">
+        {{cavalo.nome}}
+      </div>
+      <div class="col-4" style="text-align: end">
+        {{cavalo.preco | currency: 'BRL':true}}
+      </div>
+    </div>
+    <div class=" text-content row">
+      <div class="col-12">
+        <div class="d-flex flex-column">
+          <span>
+            Genero: {{cavalo.genero?.tipo | titlecase}}
+          </span>
+          <span>
+            Habilidade: {{cavalo.habilidade?.tipo}}
+          </span>
+          <span>
+            Pelagem: {{cavalo.pelagem?.nome}}
+          </span>
+          <span>
+            Raça: {{cavalo.raca?.nome}}
+          </span>
+        </div>
+      </div>
+      <div class="col-12">
+        {{cavalo.descricao}}
+      </div>
+    </div>
+  </div>
+  <div class="right-content">
+    <div class="cavalo-imagem">
+      <img src="assets/images/cavalo.png">
+    </div>
+    <div class="cavalo-info py-2 px-3">
+      <div class="d-flex flex-column">
+        <span>Vendedor: {{cavalo.user?.nome}}</span>
+        <span>Email: {{cavalo.user?.email}}</span>
+        <span>Telefone: {{cavalo.user?.telefone}}</span>
+      </div>
+      <div>
+        <button class="btn btn-primary" (click)="handleContato(cavalo.user?.telefone)">Entrar em contato com o vendedor</button>
+      </div>
+    </div>
+  </div>
+</div>

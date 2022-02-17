@@ -1,0 +1,36 @@
+.home-container {
+  .header {
+    > img {
+      width: 100%
+    }
+  }
+
+  .filters-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .filters {
+      width: 60%;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, auto));
+      justify-items: center;
+      justify-content: space-evenly;
+      row-gap: 16px;
+      > div {
+        width: 200px;
+        > input {
+          width: 100%;
+        }
+      }
+    }
+  }
+
+  .cavalos-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 240px));
+    //justify-items: center;
+    //justify-content: space-between;
+    column-gap: 16px;
+    row-gap: 16px;
+  }
+}

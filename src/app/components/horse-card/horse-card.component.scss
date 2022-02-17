@@ -1,0 +1,13 @@
+.horse-card {
+  width: 240px;
+  background-color: #EBEBEB;
+  border-radius: 4px;
+  cursor: pointer;
+  .picture {
+    overflow: hidden;
+    border-radius: 30px;
+    > img {
+      width: 100%;
+    }
+  }
+}

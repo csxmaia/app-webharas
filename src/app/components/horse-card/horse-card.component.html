@@ -1,0 +1,16 @@
+<div class="horse-card" (click)="handleClickCard()">
+  <div class="picture p-2">
+    <img [src]="picture" />
+  </div>
+  <div class="high-body">
+    <div class="d-flex flex-column align-items-center">
+      <h3 class="mb-1" style="line-height: 1">{{name}}</h3>
+      <span>{{price | currency: 'BRL': true}}</span>
+    </div>
+  </div>
+  <div class="low-body">
+    <div class="d-flex justify-content-end">
+      {{city}}
+    </div>
+  </div>
+</div>

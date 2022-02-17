@@ -1,0 +1,90 @@
+<div class="cadastrar-cavalo">
+  <div class="row">
+    <div class="col-lg-6">
+      <label for="nome">Nome do cavalo</label>
+      <input [(ngModel)]="nome" type="text" id="nome" class="form-control" />
+    </div>
+    <div class="col-lg-3">
+      <label for="genero">Genero</label>
+      <select id="genero" [(ngModel)]="genero" class="form-select" [compareWith]="compareFn">
+        <option *ngFor="let genero of generoList" [ngValue]="genero">
+          {{genero.tipo | titlecase //noinspection UnresolvedFunction }}
+        </option>
+      </select>
+    </div>
+    <div class="col-lg-3">
+      <label for="dataNascimento">Data de Nascimento</label>
+      <input [(ngModel)]="dataNascimento" type="text" id="dataNascimento" class="form-control" />
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-lg-3">
+      <label for="raca">Raça</label>
+      <select id="raca" [(ngModel)]="raca" class="form-select" [compareWith]="compareFn">
+        <option selected [value]="undefined">Todos as raças</option>
+        <option *ngFor="let raca of racaList" [ngValue]="raca">
+          {{raca.nome | titlecase //noinspection UnresolvedFunction }}
+        </option>
+      </select>
+    </div>
+
+    <div class="col-lg-3">
+      <label for="habilidade">Habilidade</label>
+      <select id="habilidade" [(ngModel)]="habilidade" class="form-select" [compareWith]="compareFn">
+        <option selected disabled [value]="undefined">Todos as Habilidades</option>
+        <option *ngFor="let habilidade of habilidadeList" [ngValue]="habilidade">
+          {{habilidade.tipo | titlecase //noinspection UnresolvedFunction }}
+        </option>
+      </select>
+    </div>
+
+    <div class="col-lg-3">
+      <label for="pelagem">Pelagem</label>
+      <select id="pelagem" [(ngModel)]="pelagem" class="form-select" [compareWith]="compareFn">
+        <option selected disabled [value]="undefined">Todos as pelagens</option>
+        <option *ngFor="let pelagem of pelagemList" [ngValue]="pelagem">
+          {{pelagem.nome | titlecase //noinspection UnresolvedFunction }}
+        </option>
+      </select>
+    </div>
+
+    <div class="col-lg-3">
+      <label for="cidade">Cidade</label>
+      <select id="cidade" [(ngModel)]="cidade" class="form-select" [compareWith]="compareFn">
+        <option selected disabled [value]="undefined">Todos as cidades</option>
+        <option *ngFor="let cidade of cidadeList" [ngValue]="cidade">
+          {{cidade.nome | titlecase //noinspection UnresolvedFunction }}
+        </option>
+      </select>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-lg-3">
+      <label for="preco">Preço</label>
+      <input [(ngModel)]="preco" type="text" id="preco" class="form-control" />
+    </div>
+
+    <div class="col">
+      <label>Imagens</label>
+      <input *ngFor="let imagem of imagens; index as i" (change)="handleChangeImagem(i, $event)" [value]="imagem" type="text" class="form-control"/>
+      <div class="mt-1">
+        <button (click)="addImage()" class="btn btn-primary d-flex align-items-center">
+          <mat-icon>add</mat-icon>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-lg-12">
+      <label for="descricao">Descrição</label>
+      <textarea [(ngModel)]="descricao" rows="3" id="descricao" class="form-control"></textarea>
+    </div>
+  </div>
+
+  <div class="w-100 d-flex justify-content-end">
+    <button class="btn btn-primary mt-3 text-end" (click)="handleSubmit()">Cadastrar</button>
+  </div>
+</div>

@@ -1,0 +1,9 @@
+.cavalos-cadastrados {
+  .cavalos-content {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    justify-items: center;
+    column-gap: 16px;
+    row-gap: 16px;
+  }
+}

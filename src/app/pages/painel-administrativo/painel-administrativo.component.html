@@ -1,0 +1,38 @@
+<div class="painel-administrativo-container mt-4 px-4 py-3">
+  <h1 class="fw-bold">PAINEL ADMINISTRATIVO</h1>
+  <div class="painel-tabs">
+    <ul class="nav nav-pills">
+      <li class="nav-item">
+        <a class="nav-link active" aria-current="page" href="#">Cavalos cadastrados</a>
+      </li>
+    </ul>
+  </div>
+  <div class="painel">
+    <div class="painel-content">
+      <div class="w-100 d-flex justify-content-end mb-3" *ngIf="componentWindow === 'listar'">
+        <button class="btn btn-primary" (click)="handleNavigation('cadastrar')">
+          <div class="d-flex align-items-center">
+            <mat-icon>add</mat-icon> Cadastrar
+          </div>
+        </button>
+      </div>
+      <div class="mb-3" *ngIf="componentWindow === 'cadastrar'">
+        <button class="btn btn-primary" (click)="handleNavigation('listar')">
+          <div class="d-flex align-items-center">
+            <mat-icon>arrow_back</mat-icon>
+          </div>
+        </button>
+      </div>
+      <div *ngIf="componentWindow === 'listar'">
+        <app-cavalos-cadastrados>
+
+        </app-cavalos-cadastrados>
+      </div>
+      <div *ngIf="componentWindow === 'cadastrar'">
+        <app-cadastrar-cavalo>
+
+        </app-cadastrar-cavalo>
+      </div>
+    </div>
+  </div>
+</div>

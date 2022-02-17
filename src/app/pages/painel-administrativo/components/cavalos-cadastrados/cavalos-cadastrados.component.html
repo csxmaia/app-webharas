@@ -1,0 +1,15 @@
+<div class="cavalos-cadastrados" *ngIf="!loading">
+  <div class="cavalos-content">
+    <div *ngFor="let cavalo of cavalos">
+      <div class="cavalo-item">
+        <app-horse-card
+          [id]=cavalo.id
+          [name]=cavalo.nome
+          [price]="cavalo.preco"
+          [city]="cavalo.cidade?.nome + ' - ' + cavalo.cidade?.estado?.sigla"
+          picture="assets/images/cavalo.png"
+        ></app-horse-card>
+      </div>
+    </div>
+  </div>
+</div>

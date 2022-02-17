@@ -1,0 +1,19 @@
+<div class="login">
+  <div class="container-login">
+    <div class="w-100 d-flex justify-content-center mb-3" style="font-size: 32px">
+      Login
+    </div>
+    <div class="entrada">
+      <label for="username">Nome de usuario:</label>
+      <input id="username" [(ngModel)]="username" />
+    </div>
+    <div class="entrada">
+      <label for="password">Senha:</label>
+      <input type="password" id="password" [(ngModel)]="password" />
+    </div>
+
+    <button (click)="handleLogin()" class="btn btn-primary mt-3 mb-2">Login</button>
+
+    <a href="/registro" class="ms-auto">Registre-se</a>
+  </div>
+</div>

@@ -1,63 +1,51 @@
-import { Injectable } from '@angular/core';
+import {HttpEvent, HttpHandler, HttpInterceptor, HttpRequest} from "@angular/common/http";
 import {Observable} from "rxjs";
-// import {environment} from "../../environments/environment";
-import {HttpClient} from "@angular/common/http";
-// import User from "../models/user";
+import {Injectable} from "@angular/core";
+import {AuthService} from "../../services/auth-service";
 import jwt_decode from "jwt-decode";
+import {Router} from "@angular/router";
 
-public interface User {
+@Injectable()
+export class AuthInterceptor implements HttpInterceptor {
 
-}
-const environment: any = 123;
+  constructor(private authService: AuthService, private router: Router) { }
 
-@Injectable({
-  providedIn: 'root'
-})
-export class AuthService {
+  intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+    let newReq = req;
 
-  private path = "/v1/auth";
-  private token_name = "PC_Token";
-
-  constructor(private http: HttpClient) { }
-
-  login(user: User): Observable<any> {
-    return this.http.post(`${environment.api}${this.path}/login`, user);
-  }
-
-  signUp(user: User): Observable<any> {
-    return this.http.post(`${environment.api}${this.path}/signUp`, user);
-  }
-
-  setToken(jwtToken: string) {
-    localStorage.setItem(this.token_name, jwtToken);
-  }
-
-  getToken() {
-    return localStorage.getItem(this.token_name);
-  }
-
-  logout() {
-    localStorage.removeItem(this.token_name);
-    window.location.href = "/login";
-  }
-
-  checkIsAuthenticated() {
-    return this.getToken() !== null
-  }
-
-  getUserByToken() {
-    let token = this.getToken();
-    var decoded: any;
-    if (token != null) {
-      decoded = jwt_decode(token);
-      const user: User = new User();
-      user.id = decoded.id;
-      user.username = decoded.username;
-      user.email = decoded.email;
-      user.name = decoded.name;
-      return user;
+    const jwtToken = this.authService.getToken();
+    if(typeof jwtToken === "string") {
+      var decoded: any = jwt_decode(jwtToken);
+      if (decoded) {
+        const { exp } = decoded;
+        const now = new Date();
+        const isExpired = now.getTime() > exp * 1000
+        if(isExpired) {
+          this.authService.logout();
+          this.router.navigate(['/login'])
+        }
+      }
     }
-    return null
+
+    if (jwtToken) {
+      newReq = req.clone({
+        setHeaders: {
+          Authorization: `Bearer ${jwtToken}`
+        }
+      });
+    }
+
+    return next.handle(newReq)
   }
 
+
 }
+
+// const header = {};
+// header['Authorization'] = jwtToken;
+// const variablesHeaders = ['Content-Type', 'Accept'];
+// for (let i = 0; i < variablesHeaders.length; i++) {
+//   const value = req.headers.get(variablesHeaders[i]);
+//   if (value) {
+//     header[variablesHeaders[i]] = value;
+//   }

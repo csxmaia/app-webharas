@@ -1,0 +1,17 @@
+<nav class="navbar navbar-expand-sm navbar-dark" style="background-color: #CA9A1F; min-height: 42px;">
+  <div class="container navbar-container" style="justify-content: normal !important;">
+    <!--    <mat-icon mat-button ">menu</mat-icon>-->
+    <!--    <span class="navbar-toggler-icon" style="margin-right: 8px; cursor: pointer; font-size: 16px;"></span>-->
+    <div class="d-flex align-items-center w-100 justify-content-between">
+      <div>
+        <a class="navbar-brand" href="#">WEBHARAS</a>
+      </div>
+      <div class="d-flex menu">
+        <div class="button" (click)="handleNavigate('painel-administrativo')">Cadastre seu cavalo</div>
+        <div *ngIf="!authService.checkIsAuthenticated()" (click)="handleNavigate('login')" class="button">Login</div>
+      </div>
+    </div>
+    <div class="collapse navbar-collapse" id="navbarNav">
+    </div>
+  </div>
+</nav>

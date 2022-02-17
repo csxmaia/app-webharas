@@ -1,0 +1,18 @@
+.navbar-container {
+  > :first-child {
+    padding-left: 12px;
+  }
+  > :last-child {
+    padding-right: 12px;
+  }
+
+  .menu {
+    gap: 18px;
+    .button {
+      cursor: pointer;
+      padding: 2px 8px;
+      border-radius: 6px;
+      background-color: #FFF;
+    }
+  }
+}
